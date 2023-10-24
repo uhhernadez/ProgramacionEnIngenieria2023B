@@ -42,22 +42,59 @@ void Pattern6 (int n) {
 
 void RowPattern9 (int width, int row) {
   int n = width - 1;
-  for (int i = 0, j = n; i < width; i++, j--) {
-    if (i == j && width %2 == 1) {
-      cout << '*';
-      continue;
+  int line1 = row;
+  int line2 = n - row;
+  
+  if (line1 == line2) {
+    for (int i = 0; i < width; i++) {
+      if (i == 0) {
+        cout << '*';
+        continue;
+      }
+      if (i == n) {
+        cout << '*';
+        continue;
+      }      
+      if (line1 == i) {
+        cout << '*';
+      } else {
+        cout << ' ';
+      }
     }
-    if (i == row) {
-      cout << '*';  
+  } else {
+    for (int i = 0; i < width; i++) {
+      if (i == 0) {
+        cout << '*';
+        continue;
+      }
+      if (i == n) {
+        cout << '*';
+        continue;
+      }
+      if (line1 == i) {
+        cout << '*';
+        continue;
+      }
+      if (line2 == i) {
+        cout << '*';
+        continue;
+      }
+      cout << ' ';
     }
-    if (j == n - row) {
-      cout << '*';
-    }
-    cout << ' ';
   }
   cout << endl;
 }
 
+void Pattern9 (int width) {
+  for (int k = 0; k < width;k++) {
+    if (k == 0 || k == width-1) {
+      RowChar(width);
+      continue;        
+    }
+    RowPattern9(width, k);
+  }
+}
+
 int main () {
-  RowPattern9(7, 2);
+  Pattern9(7);
 }
